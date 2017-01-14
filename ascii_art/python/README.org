@@ -1,0 +1,11 @@
+* ASCII ART
+Turn pic to [[https://en.wikipedia.org/wiki/ASCII_art][ASCII art]].(From [[https://www.shiyanlou.com/courses/370][this]])
+
+The key is to map RGB to GRAY.
+#+BEGIN_SRC
+gray ＝ 0.2126 * r + 0.7152 * g + 0.0722 * b
+#+END_SRC
+You can try
+#+BEGIN_SRC
+python ascii.py ascii_dora.png
+#+END_SRC
