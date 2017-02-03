@@ -1,5 +1,5 @@
 * ASCII ART
 You can try
 #+BEGIN_SRC
-python ascii.py ascii.png
+./ascii -i ascii.png -o ascii.txt
 #+END_SRC

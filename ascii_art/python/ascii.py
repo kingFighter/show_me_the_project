@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from PIL import Image
 import argparse
 
@@ -5,13 +6,13 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument('file')
 parser.add_argument('-o', '--output')
-parser.add_argument('--width', type = int, default = 80)
-parser.add_argument('--height', type = int, default = 80)
+parser.add_argument('--width', type = int)
+parser.add_argument('--height', type = int)
 
 args = parser.parse_args()
 
 IMG = args.file
-WIDTH =  args.width
+WIDTH = args.width
 HEIGHT = args.height
 OUTPUT = args.output
 
@@ -24,13 +25,15 @@ def getChar(r, g, b, alpha = 256):
 	
 	length = len(asciiChar)
 	# RGB to Gray
-	gray = int(0.2126 * r + 0.7252 * g + 0.0722 * b)
+	gray = int(0.2126 * r + 0.7152 * g + 0.0722 * b)
 	
-	unit = 256.0 / (length - 1)
+	unit = 256.0 / length
 	return asciiChar[int(gray/unit)]
 
 if __name__ == '__main__':
 	im = Image.open(IMG)
+	if WIDTH is None or HEIGHT is None:
+		WIDTH, HEIGHT = im.size
 	im = im.resize((WIDTH, HEIGHT), Image.NEAREST)
 
 	txt = ''
