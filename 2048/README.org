@@ -1,0 +1,4 @@
+* 2048
+[[https://en.wikipedia.org/wiki/2048_(video_game)][2048]] game.(From [[https://www.shiyanlou.com/courses/368][this]])
+
+The key is the *state machine*
