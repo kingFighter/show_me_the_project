@@ -5,13 +5,13 @@
 class ToyValue{
  public:
   enum struct ToyType {TOY_NULL, TOY_TRUE, TOY_FALSE, TOY_STRING, TOY_ARRAY, TOY_OBJECT, TOY_NUMBER};
-  
+  enum ErrorCode {TOY_PARSE_OK = 0, TOY_PARSE_EXPECT_VALUE, TOY_PARSE_INVALID_VALUE, TOY_PARSE_ROOT_NOT_SINGULAR};
+
   ToyValue(const std::string&);
-  void toyParser();
+  ErrorCode toyParse();
   ToyType getToyType() const;
 
  private:
-  enum {TOY_PARSER_OK = 0, TOY_PARSER_EXPECT_VALUE, TOY_PARSER_INVALID_VALUE, TOY_PARSER_ROOT_NOT_SINGULAR};
   ToyType toyType_ = ToyType::TOY_NULL;
   std::string json_;
 };

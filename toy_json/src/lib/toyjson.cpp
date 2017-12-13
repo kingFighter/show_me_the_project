@@ -3,7 +3,7 @@
 ToyValue::ToyValue(const std::string& _json):json_(_json) {
 }
 
-void ToyValue::toyParser() {
+ToyValue::ErrorCode ToyValue::toyParse() {
 }
 
 ToyValue::ToyType ToyValue::getToyType() const{
