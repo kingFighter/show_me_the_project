@@ -1,0 +1,132 @@
+\hypertarget{classToyValue}{}\section{Toy\+Value Class Reference}
+\label{classToyValue}\index{Toy\+Value@{Toy\+Value}}
+
+
+{\ttfamily \#include $<$toyjson.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fb}{Toy\+Type} \{ \newline
+\hyperlink{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fba843935140d865476e8baba056d92824d}{Toy\+Type\+::\+T\+O\+Y\+\_\+\+N\+U\+LL}, 
+\hyperlink{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fbab7ffbf589ffae9efd0e6e9c97c587fa7}{Toy\+Type\+::\+T\+O\+Y\+\_\+\+T\+R\+UE}, 
+\hyperlink{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fbae7e0e6a03abb0ca5a29163cf1e0844bd}{Toy\+Type\+::\+T\+O\+Y\+\_\+\+F\+A\+L\+SE}, 
+\hyperlink{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fba8eb7be2e9307ebc5979ceaa007023a1c}{Toy\+Type\+::\+T\+O\+Y\+\_\+\+S\+T\+R\+I\+NG}, 
+\newline
+\hyperlink{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fba1ec2135b2ca1913648a4dfaa8ea8d83e}{Toy\+Type\+::\+T\+O\+Y\+\_\+\+A\+R\+R\+AY}, 
+\hyperlink{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fbae599d1d1144996b37a7844ae668c3dcc}{Toy\+Type\+::\+T\+O\+Y\+\_\+\+O\+B\+J\+E\+CT}, 
+\hyperlink{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fbaf0cff563fe30e59bf65d7e8793f1ec0c}{Toy\+Type\+::\+T\+O\+Y\+\_\+\+N\+U\+M\+B\+ER}
+ \}\begin{DoxyCompactList}\small\item\em J\+S\+ON support 7 types. \end{DoxyCompactList}
+\item 
+enum \hyperlink{classToyValue_a31b548920488141921c06e2825c6e2f1}{Error\+Code} \{ \hyperlink{classToyValue_a31b548920488141921c06e2825c6e2f1a2067cd73353a1899d3f3fe483f34ee88}{T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+OK} = 0, 
+\hyperlink{classToyValue_a31b548920488141921c06e2825c6e2f1a6909e232aacd68d282bc4e8dd1d27c4d}{T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+E\+X\+P\+E\+C\+T\+\_\+\+V\+A\+L\+UE}, 
+\hyperlink{classToyValue_a31b548920488141921c06e2825c6e2f1a2b7f295f378702f2f93881711584c3c2}{T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+V\+A\+L\+UE}, 
+\hyperlink{classToyValue_a31b548920488141921c06e2825c6e2f1ab792152f5bc6ec63878847779fb83158}{T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+R\+O\+O\+T\+\_\+\+N\+O\+T\+\_\+\+S\+I\+N\+G\+U\+L\+AR}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classToyValue_afe6bb7b76eff8ffdb937a97ba21db8db}{Toy\+Value} (const std\+::string \&)
+\item 
+\hyperlink{classToyValue_a31b548920488141921c06e2825c6e2f1}{Error\+Code} \hyperlink{classToyValue_acd39c13bcfa9dacd70e6823f9dfedf41}{toy\+Parse} ()
+\item 
+\hyperlink{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fb}{Toy\+Type} \hyperlink{classToyValue_aab973bc2051c7b587719c2a60ab0df9a}{get\+Toy\+Type} () const
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classToyValue_a31b548920488141921c06e2825c6e2f1}\label{classToyValue_a31b548920488141921c06e2825c6e2f1}} 
+\index{Toy\+Value@{Toy\+Value}!Error\+Code@{Error\+Code}}
+\index{Error\+Code@{Error\+Code}!Toy\+Value@{Toy\+Value}}
+\subsubsection{\texorpdfstring{Error\+Code}{ErrorCode}}
+{\footnotesize\ttfamily enum \hyperlink{classToyValue_a31b548920488141921c06e2825c6e2f1}{Toy\+Value\+::\+Error\+Code}}
+
+T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+OK \+: no error T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+E\+X\+P\+E\+C\+T\+\_\+\+V\+A\+L\+UE \+: Content of \hyperlink{classToyValue}{Toy\+Value} is empty T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+V\+A\+L\+UE \+: Content of \hyperlink{classToyValue}{Toy\+Value} is not supported literals T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+R\+O\+O\+T\+\_\+\+N\+O\+T\+\_\+\+S\+I\+N\+G\+U\+L\+AR \+: Multiple content of \hyperlink{classToyValue}{Toy\+Value} exist \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+OK@{T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+OK}!Toy\+Value@{Toy\+Value}}\index{Toy\+Value@{Toy\+Value}!T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+OK@{T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+OK}}}\mbox{\Hypertarget{classToyValue_a31b548920488141921c06e2825c6e2f1a2067cd73353a1899d3f3fe483f34ee88}\label{classToyValue_a31b548920488141921c06e2825c6e2f1a2067cd73353a1899d3f3fe483f34ee88}} 
+T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+OK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+E\+X\+P\+E\+C\+T\+\_\+\+V\+A\+L\+UE@{T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+E\+X\+P\+E\+C\+T\+\_\+\+V\+A\+L\+UE}!Toy\+Value@{Toy\+Value}}\index{Toy\+Value@{Toy\+Value}!T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+E\+X\+P\+E\+C\+T\+\_\+\+V\+A\+L\+UE@{T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+E\+X\+P\+E\+C\+T\+\_\+\+V\+A\+L\+UE}}}\mbox{\Hypertarget{classToyValue_a31b548920488141921c06e2825c6e2f1a6909e232aacd68d282bc4e8dd1d27c4d}\label{classToyValue_a31b548920488141921c06e2825c6e2f1a6909e232aacd68d282bc4e8dd1d27c4d}} 
+T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+E\+X\+P\+E\+C\+T\+\_\+\+V\+A\+L\+UE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+V\+A\+L\+UE@{T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+V\+A\+L\+UE}!Toy\+Value@{Toy\+Value}}\index{Toy\+Value@{Toy\+Value}!T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+V\+A\+L\+UE@{T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+V\+A\+L\+UE}}}\mbox{\Hypertarget{classToyValue_a31b548920488141921c06e2825c6e2f1a2b7f295f378702f2f93881711584c3c2}\label{classToyValue_a31b548920488141921c06e2825c6e2f1a2b7f295f378702f2f93881711584c3c2}} 
+T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+V\+A\+L\+UE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+R\+O\+O\+T\+\_\+\+N\+O\+T\+\_\+\+S\+I\+N\+G\+U\+L\+AR@{T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+R\+O\+O\+T\+\_\+\+N\+O\+T\+\_\+\+S\+I\+N\+G\+U\+L\+AR}!Toy\+Value@{Toy\+Value}}\index{Toy\+Value@{Toy\+Value}!T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+R\+O\+O\+T\+\_\+\+N\+O\+T\+\_\+\+S\+I\+N\+G\+U\+L\+AR@{T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+R\+O\+O\+T\+\_\+\+N\+O\+T\+\_\+\+S\+I\+N\+G\+U\+L\+AR}}}\mbox{\Hypertarget{classToyValue_a31b548920488141921c06e2825c6e2f1ab792152f5bc6ec63878847779fb83158}\label{classToyValue_a31b548920488141921c06e2825c6e2f1ab792152f5bc6ec63878847779fb83158}} 
+T\+O\+Y\+\_\+\+P\+A\+R\+S\+E\+\_\+\+R\+O\+O\+T\+\_\+\+N\+O\+T\+\_\+\+S\+I\+N\+G\+U\+L\+AR&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fb}\label{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fb}} 
+\index{Toy\+Value@{Toy\+Value}!Toy\+Type@{Toy\+Type}}
+\index{Toy\+Type@{Toy\+Type}!Toy\+Value@{Toy\+Value}}
+\subsubsection{\texorpdfstring{Toy\+Type}{ToyType}}
+{\footnotesize\ttfamily enum \hyperlink{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fb}{Toy\+Value\+::\+Toy\+Type}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+J\+S\+ON support 7 types. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+Y\+\_\+\+N\+U\+LL@{T\+O\+Y\+\_\+\+N\+U\+LL}!Toy\+Value@{Toy\+Value}}\index{Toy\+Value@{Toy\+Value}!T\+O\+Y\+\_\+\+N\+U\+LL@{T\+O\+Y\+\_\+\+N\+U\+LL}}}\mbox{\Hypertarget{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fba843935140d865476e8baba056d92824d}\label{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fba843935140d865476e8baba056d92824d}} 
+T\+O\+Y\+\_\+\+N\+U\+LL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+Y\+\_\+\+T\+R\+UE@{T\+O\+Y\+\_\+\+T\+R\+UE}!Toy\+Value@{Toy\+Value}}\index{Toy\+Value@{Toy\+Value}!T\+O\+Y\+\_\+\+T\+R\+UE@{T\+O\+Y\+\_\+\+T\+R\+UE}}}\mbox{\Hypertarget{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fbab7ffbf589ffae9efd0e6e9c97c587fa7}\label{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fbab7ffbf589ffae9efd0e6e9c97c587fa7}} 
+T\+O\+Y\+\_\+\+T\+R\+UE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+Y\+\_\+\+F\+A\+L\+SE@{T\+O\+Y\+\_\+\+F\+A\+L\+SE}!Toy\+Value@{Toy\+Value}}\index{Toy\+Value@{Toy\+Value}!T\+O\+Y\+\_\+\+F\+A\+L\+SE@{T\+O\+Y\+\_\+\+F\+A\+L\+SE}}}\mbox{\Hypertarget{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fbae7e0e6a03abb0ca5a29163cf1e0844bd}\label{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fbae7e0e6a03abb0ca5a29163cf1e0844bd}} 
+T\+O\+Y\+\_\+\+F\+A\+L\+SE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+Y\+\_\+\+S\+T\+R\+I\+NG@{T\+O\+Y\+\_\+\+S\+T\+R\+I\+NG}!Toy\+Value@{Toy\+Value}}\index{Toy\+Value@{Toy\+Value}!T\+O\+Y\+\_\+\+S\+T\+R\+I\+NG@{T\+O\+Y\+\_\+\+S\+T\+R\+I\+NG}}}\mbox{\Hypertarget{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fba8eb7be2e9307ebc5979ceaa007023a1c}\label{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fba8eb7be2e9307ebc5979ceaa007023a1c}} 
+T\+O\+Y\+\_\+\+S\+T\+R\+I\+NG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+Y\+\_\+\+A\+R\+R\+AY@{T\+O\+Y\+\_\+\+A\+R\+R\+AY}!Toy\+Value@{Toy\+Value}}\index{Toy\+Value@{Toy\+Value}!T\+O\+Y\+\_\+\+A\+R\+R\+AY@{T\+O\+Y\+\_\+\+A\+R\+R\+AY}}}\mbox{\Hypertarget{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fba1ec2135b2ca1913648a4dfaa8ea8d83e}\label{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fba1ec2135b2ca1913648a4dfaa8ea8d83e}} 
+T\+O\+Y\+\_\+\+A\+R\+R\+AY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+Y\+\_\+\+O\+B\+J\+E\+CT@{T\+O\+Y\+\_\+\+O\+B\+J\+E\+CT}!Toy\+Value@{Toy\+Value}}\index{Toy\+Value@{Toy\+Value}!T\+O\+Y\+\_\+\+O\+B\+J\+E\+CT@{T\+O\+Y\+\_\+\+O\+B\+J\+E\+CT}}}\mbox{\Hypertarget{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fbae599d1d1144996b37a7844ae668c3dcc}\label{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fbae599d1d1144996b37a7844ae668c3dcc}} 
+T\+O\+Y\+\_\+\+O\+B\+J\+E\+CT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+Y\+\_\+\+N\+U\+M\+B\+ER@{T\+O\+Y\+\_\+\+N\+U\+M\+B\+ER}!Toy\+Value@{Toy\+Value}}\index{Toy\+Value@{Toy\+Value}!T\+O\+Y\+\_\+\+N\+U\+M\+B\+ER@{T\+O\+Y\+\_\+\+N\+U\+M\+B\+ER}}}\mbox{\Hypertarget{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fbaf0cff563fe30e59bf65d7e8793f1ec0c}\label{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fbaf0cff563fe30e59bf65d7e8793f1ec0c}} 
+T\+O\+Y\+\_\+\+N\+U\+M\+B\+ER&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classToyValue_afe6bb7b76eff8ffdb937a97ba21db8db}\label{classToyValue_afe6bb7b76eff8ffdb937a97ba21db8db}} 
+\index{Toy\+Value@{Toy\+Value}!Toy\+Value@{Toy\+Value}}
+\index{Toy\+Value@{Toy\+Value}!Toy\+Value@{Toy\+Value}}
+\subsubsection{\texorpdfstring{Toy\+Value()}{ToyValue()}}
+{\footnotesize\ttfamily Toy\+Value\+::\+Toy\+Value (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+json }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classToyValue_aab973bc2051c7b587719c2a60ab0df9a}\label{classToyValue_aab973bc2051c7b587719c2a60ab0df9a}} 
+\index{Toy\+Value@{Toy\+Value}!get\+Toy\+Type@{get\+Toy\+Type}}
+\index{get\+Toy\+Type@{get\+Toy\+Type}!Toy\+Value@{Toy\+Value}}
+\subsubsection{\texorpdfstring{get\+Toy\+Type()}{getToyType()}}
+{\footnotesize\ttfamily \hyperlink{classToyValue_afe40e1c745e0cc296066ae27f9d7f9fb}{Toy\+Value\+::\+Toy\+Type} Toy\+Value\+::get\+Toy\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classToyValue_acd39c13bcfa9dacd70e6823f9dfedf41}\label{classToyValue_acd39c13bcfa9dacd70e6823f9dfedf41}} 
+\index{Toy\+Value@{Toy\+Value}!toy\+Parse@{toy\+Parse}}
+\index{toy\+Parse@{toy\+Parse}!Toy\+Value@{Toy\+Value}}
+\subsubsection{\texorpdfstring{toy\+Parse()}{toyParse()}}
+{\footnotesize\ttfamily \hyperlink{classToyValue_a31b548920488141921c06e2825c6e2f1}{Toy\+Value\+::\+Error\+Code} Toy\+Value\+::toy\+Parse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/lib/\hyperlink{toyjson_8h}{toyjson.\+h}\item 
+src/lib/\hyperlink{toyjson_8cpp}{toyjson.\+cpp}\end{DoxyCompactItemize}

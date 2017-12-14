@@ -1,7 +1,7 @@
 workspace "toy_json"
   configurations { "Debug", "Release" }
   buildoptions "-std=c++11" 		
-  location "build"
+  location "../build"
 
 project "toy_json"
   targetname "toyjson"
