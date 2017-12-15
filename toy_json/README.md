@@ -23,3 +23,7 @@
 1. cd  toy_json
 2. doxygen Doxyfile
 3. check with toy_json/docs
+
+## Reference
+1. [RFC 7159](https://tools.ietf.org/html/rfc7159)
+2. [ECMA-404](https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)
