@@ -1,4 +1,5 @@
 #include "toyjson.h"
+#include <cmath>
 
 ToyValue::ErrorCode ToyValue::toyParse(const std::string& json) {
   const char* jsonC = json.c_str();
@@ -27,7 +28,7 @@ bool ToyValue::isWs(char c) {
 void ToyValue::skipWs(const char** json) {
   const char* jsonC = *json;
   while (isWs(*jsonC)) ++jsonC;
-  json = &jsonC;
+  *json = jsonC;
 }
 
 ToyValue::ErrorCode ToyValue::parse(const char** json) {
@@ -43,16 +44,41 @@ ToyValue::ErrorCode ToyValue::parse(const char** json) {
     case '\0':
       return TOY_PARSE_EXPECT_VALUE;
     default:
-      return TOY_PARSE_INVALID_VALUE;
+      return parseNumber(json);
   }
+}
+
+ToyValue::ErrorCode ToyValue::parseNumber(const char** json) {
+  const char *jsonC = *json;
+  char first = *jsonC, second = *(jsonC + 1);
+  if ((first != '-' && !isdigit(first))
+      || (first == '0' && (second == 'x' || second == 'X' || isdigit(second)))) 
+      return TOY_PARSE_INVALID_VALUE;
+  char *endPtr;
+  errno = 0;
+  u.n = strtod(jsonC, &endPtr);
+  if ((*endPtr != '\0' && *endPtr != ' ') || *(endPtr - 1) == '.') return TOY_PARSE_INVALID_VALUE;
+  if (errno == ERANGE && (u.n == HUGE_VAL || u.n == -HUGE_VAL))  return TOY_PARSE_NUM_OVERFLOW;
+  
+  *json = endPtr;
+  toyType_ = ToyType::TOY_NUMBER;
+  return TOY_PARSE_OK;
 }
 
 ToyValue::ErrorCode ToyValue::parseLiteral(const char** json, const char *str, ToyType toyType) {
   const char* jsonC = *json;
-  while (*str != '\0'  && *jsonC++ == *str++);
+  while (*str != '\0'  && *jsonC == *str) {
+    ++jsonC;
+    ++str;
+  }
   
   *json = jsonC;
   if (*str != '\0') return TOY_PARSE_INVALID_VALUE;
   toyType_ = toyType;
   return TOY_PARSE_OK;
 }
+
+double ToyValue::getToyNumber() const {
+  return u.n;
+}
+

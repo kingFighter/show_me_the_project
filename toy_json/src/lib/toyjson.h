@@ -13,13 +13,17 @@ class ToyValue{
    * TOY_PARSE_INVALID_VALUE : Content of ToyValue is not supported literals
    * TOY_PARSE_ROOT_NOT_SINGULAR : Multiple content of ToyValue exist
    */
-  enum ErrorCode {TOY_PARSE_OK = 0, TOY_PARSE_EXPECT_VALUE, TOY_PARSE_INVALID_VALUE, TOY_PARSE_ROOT_NOT_SINGULAR};
+  enum ErrorCode {TOY_PARSE_OK = 0, TOY_PARSE_EXPECT_VALUE, TOY_PARSE_INVALID_VALUE, TOY_PARSE_ROOT_NOT_SINGULAR, TOY_PARSE_NUM_OVERFLOW};
 
   ErrorCode toyParse(const std::string&);
   ToyType getToyType() const;
+  double getToyNumber() const;
 
  private:
   ToyType toyType_ = ToyType::TOY_NULL;
+  union {
+    double n;
+  }u;
   /**
    * skip ws
    * ws = *(
@@ -39,6 +43,7 @@ class ToyValue{
   bool isWs(char);
   ErrorCode parse(const char**);
   ErrorCode parseLiteral(const char**, const char*, ToyType);
+  ErrorCode parseNumber(const char**);
 };
 
 #endif
