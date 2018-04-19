@@ -136,6 +136,25 @@ TEST(TestParse, ParseNumber) {
   testNumber(-1.7976931348623157e+308, "-1.7976931348623157e+308");
 }
 
+void testString(string n, const string& sn) {
+  ToyValue toyValue;
+  ErrorCode er = toyValue.toyParse(sn);
+  ToyType toyType = toyValue.getToyType();
+  string str = toyValue.getToyString();
+  EXPECT_EQ(ErrorCode::TOY_PARSE_OK, er);
+  EXPECT_EQ(ToyType::TOY_STRING, toyType);
+  EXPECT_EQ(n, str);
+}
+
+TEST(TestParse, ParseString) {
+  testString("123", "\"123\"");
+  testString("", "\"\"");
+  testString("\"", "\"\\\"\"");
+  testString("\\", "\"\\\\\"");
+  testString("\" \\ / \b \f \n \r \t", "\"\\\" \\\\ \\/ \\b \\f \\n \\r \\t\"");
+  //not support string contains '\0'
+  //testString("\0abc", "\"\0abc\"");  
+}
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();

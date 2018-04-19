@@ -43,6 +43,8 @@ ToyValue::ErrorCode ToyValue::parse(const char** json) {
       return parseLiteral(json, "false", ToyType::TOY_FALSE);
     case '\0':
       return TOY_PARSE_EXPECT_VALUE;
+    case '"':
+      return parseString(json);
     default:
       return parseNumber(json);
   }
@@ -56,9 +58,9 @@ ToyValue::ErrorCode ToyValue::parseNumber(const char** json) {
       return TOY_PARSE_INVALID_VALUE;
   char *endPtr;
   errno = 0;
-  u.n = strtod(jsonC, &endPtr);
+  num = strtod(jsonC, &endPtr);
   if ((*endPtr != '\0' && *endPtr != ' ') || *(endPtr - 1) == '.') return TOY_PARSE_INVALID_VALUE;
-  if (errno == ERANGE && (u.n == HUGE_VAL || u.n == -HUGE_VAL))  return TOY_PARSE_NUM_OVERFLOW;
+  if (errno == ERANGE && (num == HUGE_VAL || num == -HUGE_VAL))  return TOY_PARSE_NUM_OVERFLOW;
   
   *json = endPtr;
   toyType_ = ToyType::TOY_NUMBER;
@@ -79,6 +81,63 @@ ToyValue::ErrorCode ToyValue::parseLiteral(const char** json, const char *str, T
 }
 
 double ToyValue::getToyNumber() const {
-  return u.n;
+  return num;
+}
+
+string ToyValue::getToyString() const {
+  return str;
+}
+
+ToyValue::ErrorCode ToyValue::parseString(const char** json) {
+  const char* jsonC = *json;
+  ++jsonC;
+  string tmp;
+  while (true) {
+    char c = *jsonC++;
+    switch(c) {
+      case '"':
+	*json = jsonC;
+	new (&str) string(tmp);
+	toyType_ = ToyType::TOY_STRING;
+	return TOY_PARSE_OK;
+      case '\\':
+	switch(*jsonC++) { 
+	  case '"':
+	    tmp.push_back('"');
+	    break;
+	  case '\\':
+	    tmp.push_back('\\');
+	    break;
+	  case '/':
+	    tmp.push_back('/');
+	    break;
+	  case 'b':
+	    tmp.push_back('\b');
+	    break;
+	  case 'f':
+	    tmp.push_back('\f');
+	    break;
+	  case 'n':
+	    tmp.push_back('\n');
+	    break;
+	  case 'r': 
+	    tmp.push_back('\r');
+	    break;
+	  case 't':
+	    tmp.push_back('\t');
+	    break;
+	  default:
+	    return TOY_PARSE_INVALID_STRING_ESCAPE;
+	}
+	break;
+      default:
+	if ((unsigned char)c <0x20) {
+	  return TOY_PARSE_INVALID_STRING_CHAR;
+	}
+	tmp.push_back(c);
+	break;
+
+    }
+  }
 }
 

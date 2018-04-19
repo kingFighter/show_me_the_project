@@ -1,6 +1,8 @@
 #ifndef TOY_JSON_H
 #define TOY_JSON_H
+
 #include <string>
+using std::string;
 
 class ToyValue{
  public:
@@ -12,18 +14,26 @@ class ToyValue{
    * TOY_PARSE_EXPECT_VALUE : Content of ToyValue is empty
    * TOY_PARSE_INVALID_VALUE : Content of ToyValue is not supported literals
    * TOY_PARSE_ROOT_NOT_SINGULAR : Multiple content of ToyValue exist
+   * TOY_PARSE_NUM_OVERFLOW ： Content of ToyValue is overflow
+   * TOY_PARSE_INVALID_STRING_CHAR : Content of ToyValue is invalid  char
+   * TOY_PARSE_INVALID_STRING_ESCAPE : Content of ToyValue is invalid escape char
    */
-  enum ErrorCode {TOY_PARSE_OK = 0, TOY_PARSE_EXPECT_VALUE, TOY_PARSE_INVALID_VALUE, TOY_PARSE_ROOT_NOT_SINGULAR, TOY_PARSE_NUM_OVERFLOW};
+  enum ErrorCode {TOY_PARSE_OK = 0, TOY_PARSE_EXPECT_VALUE, TOY_PARSE_INVALID_VALUE, TOY_PARSE_ROOT_NOT_SINGULAR, TOY_PARSE_NUM_OVERFLOW, TOY_PARSE_INVALID_STRING_CHAR, TOY_PARSE_INVALID_STRING_ESCAPE};
 
   ErrorCode toyParse(const std::string&);
   ToyType getToyType() const;
   double getToyNumber() const;
-
+  string getToyString() const;
+  
+  ToyValue():tok(DOU), num(0){}
+  ~ToyValue() { if (tok== STR) str.~string();}
  private:
   ToyType toyType_ = ToyType::TOY_NULL;
+  enum {DOU, STR} tok;
   union {
-    double n;
-  }u;
+    double num;
+    string str;
+  };
   /**
    * skip ws
    * ws = *(
@@ -44,6 +54,7 @@ class ToyValue{
   ErrorCode parse(const char**);
   ErrorCode parseLiteral(const char**, const char*, ToyType);
   ErrorCode parseNumber(const char**);
+  ErrorCode parseString(const char**);
 };
 
 #endif

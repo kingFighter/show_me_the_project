@@ -19,6 +19,10 @@
 3. cd ../build
 4. make
 
+## Unit Test
+1. After [Build](#build)
+2. ./unit_test
+
 ## Doc
 1. cd  toy_json
 2. doxygen Doxyfile
