@@ -151,9 +151,21 @@ TEST(TestParse, ParseString) {
   testString("", "\"\"");
   testString("\"", "\"\\\"\"");
   testString("\\", "\"\\\\\"");
+  testString("Hello", "\"Hello\"");
+  testString("Hello\nWorld", "\"Hello\\nWorld\"");
   testString("\" \\ / \b \f \n \r \t", "\"\\\" \\\\ \\/ \\b \\f \\n \\r \\t\"");
-  //not support string contains '\0'
-  //testString("\0abc", "\"\0abc\"");  
+  testString("\0abc", "\"\u0000abc\"");  
+  testString("\x00", "\"\\u0000\""); 
+  testString("\x24", "\"\\u0024\""); 
+  testString("\x7f", "\"\\u007f\""); 
+  testString("\xC2\x80", "\"\\u0080\""); 
+  testString("\xC2\xA2", "\"\\u00A2\""); 
+  testString("\xdf\xbf", "\"\\u07ff\""); 
+  testString("\xE0\xA0\x80", "\"\\u0800\"");
+  testString("\xE2\x82\xAC", "\"\\u20AC\""); 
+  testString("\xEf\xbf\xbf", "\"\\uffff\""); 
+  testString("\xF0\x90\x80\x80", "\"\\uD800\\uDc00\""); 
+  testString("\xF4\x8f\xbf\xbf", "\"\\udbff\\udfff\"");  
 }
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);

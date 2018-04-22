@@ -1,5 +1,6 @@
 #include "toyjson.h"
 #include <cmath>
+#include <cstdlib>
 
 ToyValue::ErrorCode ToyValue::toyParse(const std::string& json) {
   const char* jsonC = json.c_str();
@@ -126,6 +127,40 @@ ToyValue::ErrorCode ToyValue::parseString(const char** json) {
 	  case 't':
 	    tmp.push_back('\t');
 	    break;
+	  case 'u': {
+	    auto jsonTmp = jsonC;
+	    unsigned int n = 0;
+	    unsigned int n1 = parseHex(&jsonC);
+	    if (jsonTmp + 4 != jsonC) return TOY_PARSE_INVALID_UNICODE_HEX;
+	    if (n1 >= 0xd800 && n1 <= 0xdbff) {
+	      jsonTmp = jsonC;
+	      unsigned int n2 = parseHex(&jsonC);
+	      if (jsonTmp + 4 != jsonC) return TOY_PARSE_INVALID_UNICODE_HEX;
+	      if (n2 >= 0xdc00 && n2 <= 0xdfff) {
+		n = 0x10000 + (n1 - 0xd800) * 0x400 + (n2 - 0xdc00);
+	      } else {
+		return TOY_PARSE_INVALID_UNICODE_SURROGATE;
+	      }
+	    } else {
+	      n = n1;
+	    }
+	    if (n >= 0x0000 && n <= 0x007f) {
+	      tmp.push_back(n);
+	    } else if (n >= 0x0080 && n <= 0x07ff) {
+	      tmp.push_back(0xc0 | n >> 6 & 0xff);
+	      tmp.push_back(0x80 | n & 0x3f);
+	    } else if (n >= 0x0800 && n <= 0xffff) {
+	      tmp.push_back(0xe0 | n >> 12 & 0xf);
+	      tmp.push_back(0x80 | n >> 6 & 0x3f);
+	      tmp.push_back(0x80 | n & 0x3f);
+	    } else {
+	      tmp.push_back(0xf0 | n >> 18 & 0xf);
+	      tmp.push_back(0x80 | n >> 12 & 0x3f);
+	      tmp.push_back(0x80 | n > 6 &  0x3f);
+	      tmp.push_back(0x80 | n & 0x3f);
+	    }
+	  }
+	break;
 	  default:
 	    return TOY_PARSE_INVALID_STRING_ESCAPE;
 	}
@@ -141,3 +176,11 @@ ToyValue::ErrorCode ToyValue::parseString(const char** json) {
   }
 }
 
+unsigned int ToyValue::parseHex(const char** json) {
+  const char *jsonC = *json;
+  if(isspace(*jsonC)) return 0;
+  char *end = nullptr;
+  unsigned int ans = strtol(jsonC, &end, 16);
+  if (end == jsonC + 4) *json += 4;
+  return ans;
+}
