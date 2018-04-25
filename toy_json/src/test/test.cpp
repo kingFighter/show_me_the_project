@@ -154,8 +154,14 @@ TEST(TestParse, ParseString) {
   testString("Hello", "\"Hello\"");
   testString("Hello\nWorld", "\"Hello\\nWorld\"");
   testString("\" \\ / \b \f \n \r \t", "\"\\\" \\\\ \\/ \\b \\f \\n \\r \\t\"");
-  testString("\0abc", "\"\u0000abc\"");  
-  testString("\x00", "\"\\u0000\""); 
+  
+  string str;
+  str.push_back('\0');str.push_back('a');str.push_back('b');str.push_back('c');
+  testString(str, "\"\\u0000abc\"");
+  
+  str.clear();
+  str.push_back('\x00');
+  testString(str, "\"\\u0000\""); 
   testString("\x24", "\"\\u0024\""); 
   testString("\x7f", "\"\\u007f\""); 
   testString("\xC2\x80", "\"\\u0080\""); 
@@ -164,6 +170,7 @@ TEST(TestParse, ParseString) {
   testString("\xE0\xA0\x80", "\"\\u0800\"");
   testString("\xE2\x82\xAC", "\"\\u20AC\""); 
   testString("\xEf\xbf\xbf", "\"\\uffff\""); 
+  testString("\xF0\x9D\x84\x9E", "\"\\uD834\\uDD1E\""); 
   testString("\xF0\x90\x80\x80", "\"\\uD800\\uDc00\""); 
   testString("\xF4\x8f\xbf\xbf", "\"\\udbff\\udfff\"");  
 }

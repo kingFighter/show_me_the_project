@@ -133,6 +133,8 @@ ToyValue::ErrorCode ToyValue::parseString(const char** json) {
 	    unsigned int n1 = parseHex(&jsonC);
 	    if (jsonTmp + 4 != jsonC) return TOY_PARSE_INVALID_UNICODE_HEX;
 	    if (n1 >= 0xd800 && n1 <= 0xdbff) {
+	      if (*jsonC != '\\' && *(jsonC + 1) != 'u') return TOY_PARSE_INVALID_UNICODE_SURROGATE;
+	      jsonC += 2;
 	      jsonTmp = jsonC;
 	      unsigned int n2 = parseHex(&jsonC);
 	      if (jsonTmp + 4 != jsonC) return TOY_PARSE_INVALID_UNICODE_HEX;
@@ -156,7 +158,7 @@ ToyValue::ErrorCode ToyValue::parseString(const char** json) {
 	    } else {
 	      tmp.push_back(0xf0 | n >> 18 & 0xf);
 	      tmp.push_back(0x80 | n >> 12 & 0x3f);
-	      tmp.push_back(0x80 | n > 6 &  0x3f);
+	      tmp.push_back(0x80 | n >> 6 &  0x3f);
 	      tmp.push_back(0x80 | n & 0x3f);
 	    }
 	  }
@@ -178,9 +180,24 @@ ToyValue::ErrorCode ToyValue::parseString(const char** json) {
 
 unsigned int ToyValue::parseHex(const char** json) {
   const char *jsonC = *json;
-  if(isspace(*jsonC)) return 0;
-  char *end = nullptr;
-  unsigned int ans = strtol(jsonC, &end, 16);
-  if (end == jsonC + 4) *json += 4;
-  return ans;
+  unsigned int ans = 0;
+  int i = 0;
+  for (i = 0; *jsonC && i < 4; ++i) {
+    ans *= 16;
+    char c = *(jsonC + i);
+    if (c >= '0' && c <='9') {
+      ans += c - '0';
+    } else if (c >= 'a' && c <= 'f') {
+      ans += c - 'a' + 10;
+    } else if (c >= 'A' && c <= 'F') {
+      ans += c - 'A' + 10;
+    } else{
+      return -1;
+    }
+  }
+  if (i == 4) {
+    *json += 4;
+    return ans;
+  }
+  return -1;
 }
